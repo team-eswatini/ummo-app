@@ -19,9 +19,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="7dp"
-            android:drawableLeft="@drawable/ic_location"
+            android:drawableLeft="@drawable/ic_description_black_24dp"
             android:drawablePadding="5dp"
-            android:text="Location"
+            android:text="Service description"
             android:textColor="@color/categoryTop"
             android:textSize="16sp" />
 
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/service_description"
             android:layout_margin="7dp"
-            android:drawableLeft="@drawable/ic_contact_phone_black_24dp"
+            android:drawableLeft="@drawable/ic_access_time_black_24dp"
             android:drawablePadding="5dp"
             android:text="Service time"
             android:textColor="@color/categoryTop"
@@ -55,9 +55,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/agreement_level"
             android:layout_margin="7dp"
-            android:drawableLeft="@drawable/ic_website"
+            android:drawableLeft="@drawable/ic_monetization_on_black_24dp"
             android:drawablePadding="5dp"
-            android:text="SErvice cost"
+            android:text="Service cost"
             android:textColor="@color/categoryTop"
             android:textSize="16sp" />
 
