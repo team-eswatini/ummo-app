@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/category_background"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="7dp"
+    android:background="@drawable/categorybox">
+
+            <TextView
+                android:id="@+id/category_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category title"
+                android:textColor="@color/normalTextColor"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                />
+
+            <TextView
+                android:id="@+id/more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="more"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/moreText"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:clickable="true"
+                android:onClick="ViewMoreProviders"/>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/serviceproviders_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:background="@color/catergoryBackground"
+                android:layout_marginTop="30dp">
+            </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

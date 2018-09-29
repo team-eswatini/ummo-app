@@ -1,0 +1,16 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+[remote "old-origin"]
+	url = https://gitlab.com/Sakhispot/DiscoveryScreen.git
+	fetch = +refs/heads/*:refs/remotes/old-origin/*
+[branch "master"]
+	remote = old-origin
+	merge = refs/heads/master
+[remote "origin"]
+	url = git@gitlab.com:ummo/ummo-discover.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
