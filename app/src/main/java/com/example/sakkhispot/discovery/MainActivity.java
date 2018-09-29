@@ -11,7 +11,7 @@ import java.util.List;
  public class MainActivity extends AppCompatActivity {
 
      List<String> serviceList;
-     ExpandableListAdapter expandableListAdapter;
+
      HashMap<String, List<String>> serviceDescription;
 
     @Override
@@ -19,11 +19,7 @@ import java.util.List;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        prepareListData();
 
-        ExpandableListView expandableListView= (ExpandableListView) findViewById(R.id.provider_services_list);
-        expandableListAdapter= new ExpandableListAdapter(this, serviceList, serviceDescription);
-        expandableListView.setAdapter(expandableListAdapter);
     }
 
      private void prepareListData() {

@@ -25,7 +25,11 @@
             android:name=".ProviderAdapter$MoreProviders"
             android:label="@string/title_activity_more_providers"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MoreServiceProviders"></activity>
+        <activity android:name=".MoreServiceProviders" />
+        <activity
+            android:name=".ServiceDescription"
+            android:label="@string/title_activity_service_description"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

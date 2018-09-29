@@ -49,15 +49,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView serviceRequirement= (TextView) convertView
                 .findViewById(R.id.service_requirement);
 
-        TextView serviceTime = (TextView) convertView
-                .findViewById(R.id.service_time);
-
-        TextView serviceLevelAgreement = (TextView) convertView
-                .findViewById(R.id.service_level_agreement);
-
-        TextView serviceCost = (TextView) convertView
-                .findViewById(R.id.service_cost);
-
         serviceRequirement.setText(childText);
 
         return convertView;
@@ -112,3 +103,4 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return true;
     }
 }
+

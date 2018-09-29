@@ -62,7 +62,7 @@ public class Discovery extends AppCompatActivity {
     }
 
     public void ViewProvider(View view){
-        Intent intent= new Intent(this, ScrollingActivity.class);
+        Intent intent= new Intent(this, ServiceDescription.class);
         this.finish();
         startActivity(intent);
     }

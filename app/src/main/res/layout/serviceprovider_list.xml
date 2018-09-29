@@ -56,7 +56,4 @@
             android:maxLength="8" />
 
     </RelativeLayout>
-
-
-
 </LinearLayout>
