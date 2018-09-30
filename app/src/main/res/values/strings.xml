@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Discovery</string>
+    <string name="app_name">UMMO</string>
     <string name="title_activity_service_providor">ServiceProvidor</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="large_text">

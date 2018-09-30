@@ -38,18 +38,6 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/agreement_level"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/service_time"
-            android:layout_margin="7dp"
-            android:drawableLeft="@drawable/ic_website"
-            android:drawablePadding="5dp"
-            android:text="Service level of agreement "
-            android:textColor="@color/categoryTop"
-            android:textSize="16sp" />
-
-        <TextView
             android:id="@+id/service_cost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,7 +45,7 @@
             android:layout_margin="7dp"
             android:drawableLeft="@drawable/ic_monetization_on_black_24dp"
             android:drawablePadding="5dp"
-            android:text="Service cost"
+            android:text="Service cost Not Available"
             android:textColor="@color/categoryTop"
             android:textSize="16sp" />
 

@@ -3,26 +3,37 @@ package com.example.sakkhispot.discovery;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.content.Context;
+
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class CatergoyAdapter extends RecyclerView.Adapter<CatergoyAdapter.MyViewHolder> {
 
     private List<category> categoryList;
+    ProviderAdapter serviceProviderAdapter;
     ArrayList<ServiceProvider> providers= new ArrayList<>();
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         public TextView categoryTitle, moreText;
         public RelativeLayout categoryBackground;
-        ProviderAdapter serviceProviderAdapter;
+
         RecyclerView serviceProviderRecyclerView;
+
+
 
         public MyViewHolder(View view) {
             super(view);
@@ -33,6 +44,7 @@ public class CatergoyAdapter extends RecyclerView.Adapter<CatergoyAdapter.MyView
             serviceProviderRecyclerView= view.findViewById(R.id.serviceproviders_rv);
 
             serviceProviderAdapter= new ProviderAdapter(providers);
+            categoryTitle = (TextView) view.findViewById(R.id.category_title);
 
             //Set serviceProviderRecyclerView
             serviceProviderRecyclerView.setAdapter(serviceProviderAdapter);
@@ -67,26 +79,13 @@ public class CatergoyAdapter extends RecyclerView.Adapter<CatergoyAdapter.MyView
 
     }
 
-    public  void addProvider(){
-        ServiceProvider serviceProvider= new ServiceProvider("Home Affairs", "Mbabane",
-                "+204 5466", "www.homeaffairs.org.sz");
-        providers.add(serviceProvider);
+    public  void addProvider(List<ServiceProvider> _providers){
 
-        serviceProvider= new ServiceProvider("Mbabane Hospital", "Mbabane",
-                "+204 0092", "www.mbabanehospital.org.sz");
-        providers.add(serviceProvider);
-
-        serviceProvider= new ServiceProvider("Manzini Hospital", "Manzini",
-                "+204 0488", "www.manzinihospital.org.sz");
-        providers.add(serviceProvider);
-
-        serviceProvider= new ServiceProvider("Central Bank of Eswatini", "Mbabane",
-                "+204 9900", "www.centralbankeswatini.org.sz");
-        providers.add(serviceProvider);
-
-        serviceProvider= new ServiceProvider("Mbabane Library", "Mbabane",
-                "+204 9900", "www.mbabanenationallibrary.org.sz");
-        providers.add(serviceProvider);
+        providers.clear();
+        for(ServiceProvider pr:_providers){
+            providers.add(pr);
+        }
+        serviceProviderAdapter.notifyDataSetChanged();
 
     }
 }

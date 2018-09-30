@@ -8,9 +8,15 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
+
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,13 +38,42 @@ public class ServiceDescription extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        prepareListData();
+        final TextView description = findViewById(R.id.service_description);
+        final TextView time = findViewById(R.id.service_time);
+        final TextView cost = findViewById(R.id.service_cost);
 
-        ExpandableListView expandableListView= (ExpandableListView) findViewById(R.id.provider_services_list);
-        expandableListAdapter= new ExpandableListAdapter(this, serviceList, serviceDescription);
-        expandableListView.setAdapter(expandableListAdapter);
+        String id = getIntent().getStringExtra("id");
+
+        ParseObject object = ParseObject.createWithoutData("Service", id);
+        object.fetchFromLocalDatastoreInBackground(new GetCallback<ParseObject>() {
+            public void done(ParseObject object, ParseException e) {
+                if (e == null) {
+
+                    setTitle(object.getString("name"));
+                    List<String> steps = object.getList("steps");
+                    description.setText(object.getString("requirements"));
+                    time.setText(object.getCreatedAt().toString());
+                    if(object.getString("cost")!=null){
+                        cost.setText(object.getString("cost"));
+                    }
+                    if(steps!=null){
+                        Log.e("STEPS",""+steps.size());
+                        prepareListData(steps);
+                        ExpandableListView expandableListView= (ExpandableListView) findViewById(R.id.provider_services_list);
+                        expandableListAdapter= new ExpandableListAdapter(ServiceDescription.this, serviceList, serviceDescription);
+                        expandableListView.setAdapter(expandableListAdapter);
+                    }else{
+                        Log.e("STEPS","No Stepa");
+                    }
 
 
+                    // object will be your game score
+                } else {
+                    Log.e("Error","Something bad happened");
+                    // something went wrong
+                }
+            }
+        });
 
     }
 
@@ -65,25 +100,10 @@ public class ServiceDescription extends AppCompatActivity {
 
 
 
-    private void prepareListData() {
+    private void prepareListData(List<String> top250) {
         serviceList = new ArrayList<String>();
         serviceDescription = new HashMap<String, List<String>>();
-
-        // Adding child data
         serviceList.add("Steps");
-
-        // Adding child data
-        List<String> top250 = new ArrayList<String>();
-        top250.add("The Shawshank Redemption");
-        top250.add("The Godfather");
-        top250.add("The Godfather: Part II");
-        top250.add("Pulp Fiction");
-        top250.add("The Good, the Bad and the Ugly");
-        top250.add("The Dark Knight");
-        top250.add("12 Angry Men");
-
-
-
         serviceDescription.put(serviceList.get(0), top250);
     }
 

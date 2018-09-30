@@ -6,9 +6,16 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Discovery extends AppCompatActivity {
 
@@ -17,20 +24,40 @@ public class Discovery extends AppCompatActivity {
 
     RecyclerView categoryRecyclerView;
     CatergoyAdapter catergoyAdapter;
+    private List<ServiceProvider> myData = new ArrayList<ServiceProvider>();
+    ParseQuery<ParseObject> query = ParseQuery.getQuery("Service");
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discovery);
+        catergoyAdapter= new CatergoyAdapter(categoryList);
+
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> serviceList, ParseException e) {
+                if (e == null) {
+                    Log.d("score", "Retrieved " + serviceList.size() + "services");
+                    for(ParseObject service:serviceList){
+                        service.pinInBackground();
+                        myData.add(new ServiceProvider(service.getString("name"),service.getString("province"),service.getObjectId(),service.getString("logo_url")));
+                    }
+                    catergoyAdapter.addProvider(myData);
+                    //catergoyAdapter.notifyDataSetChanged();
+
+                } else {
+                    Log.d("score", "Error: " + e.getMessage());
+                }
+            }
+        });
+
 
         //Fill categoryList and providersList
         addCategories();
 
         //Initialise adapters
-        catergoyAdapter= new CatergoyAdapter(categoryList);
 
-        catergoyAdapter.addProvider();
+
 
         //Initialise RecyclerViews
         categoryRecyclerView=(RecyclerView) findViewById(R.id.category_rv);
@@ -62,9 +89,9 @@ public class Discovery extends AppCompatActivity {
     }
 
     public void ViewProvider(View view){
-        Intent intent= new Intent(this, ServiceDescription.class);
-        this.finish();
-        startActivity(intent);
+       // Intent intent= new Intent(this, ServiceDescription.class);
+        //this.finish();
+        //startActivity(intent);
     }
 
     public void ViewMoreProviders(View view){
